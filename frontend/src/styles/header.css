@@ -1,0 +1,79 @@
+.navbar {
+    background-color: #1f1f1f;
+    padding: 15px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+    background-color: #171717;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+.logo {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
+.navbar .nav-link.active {
+    color: #4CAF50 !important;
+    font-weight: 600;
+    border-bottom: 2px solid #4CAF50;
+    background-color: transparent;
+}
+
+.navbar .nav-link {
+    color: #d1d1d1;
+    font-size: 1.1em;
+    margin-right: 15px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #4CAF50;
+    transform: translateY(-2px);
+}
+
+.navbar .nav-link.active {
+    color: #4CAF50;
+    font-weight: 600;
+    border-bottom: 2px solid #4CAF50;
+}
+
+
+
+/*other items */
+.logout-button, .signup-button {
+    color: #ffffff;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover, .signup-button:hover {
+    background-color: #66bb6a;
+    transform: translateY(-2px);
+}
+
+.login-button {
+    color: #d1d1d1;
+    font-size: 1.1em;
+    margin-right: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.login-button:hover {
+    color: #ffffff;
+}
+

@@ -1,0 +1,76 @@
+.video-list-container {
+    padding: 40px;
+    text-align: center;
+}
+
+.list-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.video-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.video-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 280px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.video-title {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.video-status,
+.video-upload-date {
+    font-size: 14px;
+    color: #666;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.download-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.download-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}
+
+.download-button.secondary {
+    background-color: #4CAF50;
+}
+
+.download-button.secondary:hover {
+    background-color: #3d8b40;
+}

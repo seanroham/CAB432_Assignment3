@@ -1,0 +1,203 @@
+
+.custom-container{
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+    font-size:50px;
+}
+.hero-text {
+    color: white;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for better readability */
+    padding: 20px;
+    border-radius: 8px;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75); /* Dimmed overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    position: relative;
+    z-index: 2;
+}
+
+.modal-content h3 {
+    background-color: #4a90e2; /* Background color for the heading */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    margin: -30px -30px 20px -30px;
+}
+
+.modal-content p {
+    background-color: #f9f9f9; /* Light background for text */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.modal-content button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #357ABD;
+}
+
+.modal-content .error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.modal-content .success {
+    color: green;
+    margin-bottom: 10px;
+}
+
+.user-profiles-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-profiles-table th, .user-profiles-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.user-profiles-table th {
+    background-color: #f2f2f2;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+
+
+
+/* here is for the home page*/
+.home-container {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-section {
+    background-color: #282c34;
+    color: #fff;
+    padding: 50px 20px;
+}
+
+.hero-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero-description {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.primary {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+/*.secondary {*/
+/*    background-color: #555;*/
+/*    color: #fff;*/
+/*}*/
+
+.features-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.feature-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0;
+}
+
+.feature-item p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+}
+
