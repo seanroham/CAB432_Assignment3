@@ -43,8 +43,8 @@ function VideoList() {
                                 </a>
                             )}
 
-                            {video.audioUrl && (
-                                <a href={video.audioUrl} download>
+                            {video.audioSignedUrl && (
+                                <a href={video.audioSignedUrl} download>
                                     <button className="download-button secondary">Download Audio</button>
                                 </a>
                             )}

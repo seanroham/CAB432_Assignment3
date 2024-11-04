@@ -90,13 +90,14 @@ exports.processVideo = (req, res, next) => {
                 .then(async () => {
                     console.log('Video uploaded to S3 successfully.'); //after uploading
 
-                    // video signurl
+                    // video signedurl
                     const signedUrl = await getSignedUrl(s3Client, new GetObjectCommand({
                         Bucket: process.env.S3_BUCKET_NAME,
                         Key: transcodedKey,
                     }), { expiresIn: 3600 });
 
-                    // Step 3: Extract and upload audio using the audio extraction module
+                    // Audio extraction
+                    // Separate file
                     const audioSignedUrl = await extractAndUploadAudio(tempVideoPath, audioKey);
 
                     // Generating thumbnail
@@ -150,6 +151,7 @@ exports.processVideo = (req, res, next) => {
                             console.log('DynamoDB updated with video and audio details.');
 
                             fs.unlinkSync(tempVideoPath);
+                            fs.unlinkSync(thumbnailPath);
 
                             return res.json({ signedUrl, thumbnailSignedUrl, audioSignedUrl });
                         });
