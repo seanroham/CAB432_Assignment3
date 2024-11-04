@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import ProgressBar from './ProgressBar';
 import '../styles/VideoUpload.css';
-
+import { uploadVideo } from '../extensions/api';
 function VideoUpload({ onUploadComplete }) {
     const [file, setFile] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [uploading, setUploading] = useState(false);
     const [format, setFormat] = useState('mp4');
-    const VIDEO_UPLOAD_URL = 'http://localhost:3000';
-    const VIDEO_PROCESSING_URL = 'http://localhost:3002';
+
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -24,27 +22,18 @@ function VideoUpload({ onUploadComplete }) {
         setUploading(true);
 
         try {
-            const { data: { signedUrl, videoId } } = await axios.post(`${VIDEO_UPLOAD_URL}/upload`, {
-                title: file.name,
-            });
-
-            await axios.put(signedUrl, file, {
-                headers: {
-                    'Content-Type': file.type,
-                },
-                onUploadProgress: (progressEvent) => {
+            // Use uploadVideo from api.js
+            const { videoId } = await uploadVideo(
+                file,
+                file.name,
+                (progressEvent) => {
                     const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     setUploadProgress(progress);
-                },
-            });
+                }
+            );
 
-            const processResponse = await axios.post(`${VIDEO_PROCESSING_URL}/process`, {
-                videoId,
-                title: file.name,
-                format,
-            });
-
-            onUploadComplete(processResponse.data);
+            // The rest of the video processing will be handled on the backend
+            onUploadComplete({ videoId });
         } catch (err) {
             console.error('Error uploading video:', err);
         } finally {
@@ -53,6 +42,7 @@ function VideoUpload({ onUploadComplete }) {
             setFile(null);
         }
     };
+
 
     return (
         <div className="video-upload-container">

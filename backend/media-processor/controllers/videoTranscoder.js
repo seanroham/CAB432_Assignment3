@@ -24,23 +24,16 @@ const TABLE_NAME = 'n10937668-VideosTable';
 
 
 // Transcoding Video and Generating url for download
-exports.processVideo = (req, res, next) => {
-        const { videoId, title } = req.body;
+async function processVideoData(videoId, key, filename) {
+    // const decodedKey = decodeURIComponent(key);
+    const fileName = filename
+    const tempVideoPath = `/tmp/${videoId}-${fileName}`;
+    const outputFilename = `transcoded-${Date.now()}-${fileName}`;
+    const transcodedKey = `transcoded/${outputFilename}`;
+    const thumbnailFilename = `thumbnail-${Date.now()}-${path.basename(fileName, path.extname(fileName))}.png`;
+    const audioKey = `audio/${videoId}-${fileName}.mp3`;
+    const passThroughStream = new stream.PassThrough();
 
-        const videoKey = `uploads/${videoId}-${title}`; // s3 bucket
-
-        const tempVideoPath = `/tmp/${videoId}-${title}`; //local
-
-        const outputFilename = `transcoded-${Date.now()}-${title}.mp4`;
-
-        const transcodedKey = `transcoded/${outputFilename}`; // S3 bucket folder
-
-        const thumbnailFilename = `thumbnail-${Date.now()}-${path.basename(title, path.extname(title))}.png`;
-
-        const audioKey = `audio/${videoId}-${title}.mp3`;
-
-
-        const passThroughStream = new stream.PassThrough();
 
 
 
@@ -49,12 +42,13 @@ exports.processVideo = (req, res, next) => {
         Key: transcodedKey,
         Body: passThroughStream,
     };
+    console.log("Using S3 key for download:", key);
 
 
     // Downloading the video a temporary location from s3
     const downloadParams = {
         Bucket: process.env.S3_BUCKET_NAME,
-        Key: videoKey,
+        Key: key,
     };
 
 
@@ -131,7 +125,7 @@ exports.processVideo = (req, res, next) => {
                             // Updating DynamoDB
                             const updateParams = {
                                 TableName: TABLE_NAME,
-                                Key: { 'qut-username': 'n10937668@qut.edu.au', name: title },
+                                Key: { 'qut-username': 'n10937668@qut.edu.au', name: fileName },
                                 UpdateExpression: 'SET transcodedPath = :tpath, s3Key = :skey, signedUrl = :surl, thumbnailPath = :thumb, audioPath = :audiopath, audioSignedUrl = :audiosurl, #status = :status',
                                 ExpressionAttributeValues: {
                                     ':tpath': `/transcoded/${outputFilename}`,
@@ -146,14 +140,14 @@ exports.processVideo = (req, res, next) => {
                                     '#status': 'status',
                                 },
                             };
-
                             await docClient.send(new UpdateCommand(updateParams));
+
                             console.log('DynamoDB updated with video and audio details.');
 
                             fs.unlinkSync(tempVideoPath);
                             fs.unlinkSync(thumbnailPath);
 
-                            return res.json({ signedUrl, thumbnailSignedUrl, audioSignedUrl });
+                            // return res.json({ signedUrl, thumbnailSignedUrl, audioSignedUrl });
                         });
                 });
         });
@@ -161,3 +155,14 @@ exports.processVideo = (req, res, next) => {
 };
 
 
+exports.processVideo = async (req, res, next) => {
+    const { videoId, key } = req.body;
+    try {
+        const result = await processVideoData(videoId, key);
+        res.json(result);
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.processVideoData = processVideoData;

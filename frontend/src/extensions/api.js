@@ -18,12 +18,24 @@ export const signup = async (userData) => {
 };
 
 // Upload video API call
-export const uploadVideo = async (formData, onUploadProgress) => {
-    const response = await axios.post(`${VIDEO_UPLOAD_URL}/upload`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress
-    });
-    return response.data;
+export const uploadVideo = async (file, fileName, onUploadProgress) => {
+    try {
+        // Request signed URL from backend
+        const { data: { signedUrl, videoId } } = await axios.post(`${VIDEO_UPLOAD_URL}/upload`, {
+            title: fileName,
+        });
+
+        // Upload video file to the signed URL
+        await axios.put(signedUrl, file, {
+            headers: { 'Content-Type': file.type },
+            onUploadProgress,
+        });
+
+        return { videoId };
+    } catch (error) {
+        console.error('Error uploading video:', error);
+        throw error;
+    }
 };
 
 // Process video API call

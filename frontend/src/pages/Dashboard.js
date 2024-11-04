@@ -38,9 +38,7 @@ function Dashboard() {
 
     return (
         <div className="custom-container">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1>Dashboard</h1>
-            </div>
+
             <VideoUpload onUploadComplete={handleUploadComplete} />
             <VideoList videos={videos}/>
         </div>
