@@ -76,7 +76,6 @@ async function processVideoData(videoId, key, filename) {
                 })
                 .on('error', err => {
                     console.error('Error during transcoding:', err);
-                    return next(err);
                 })
                 .pipe(passThroughStream);
 

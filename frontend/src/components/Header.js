@@ -37,11 +37,14 @@ function Header() {
                         <Nav.Link as={NavLink} to="/dashboard">
                             Dashboard
                         </Nav.Link>
-                        {isAdmin && (
-                            <Nav.Link as={NavLink} to="/userprofiles">
-                                User Profiles
-                            </Nav.Link>
-                        )}
+                        <Nav.Link as={NavLink} to="/deleterequest">
+                            Request deletion
+                        </Nav.Link>
+                        {/*{isAdmin && (*/}
+                        {/*    // <Nav.Link as={NavLink} to="/deleterequest">*/}
+                        {/*    //     Request deletion*/}
+                        {/*    // </Nav.Link>*/}
+                        {/*)}*/}
                     </Nav>
                     <Nav>
                         {isLoggedIn ? (

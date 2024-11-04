@@ -12,6 +12,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import LoginForm from './components/LoginForm';
 import SignupPage from './components/SignupPage';
+import DeleteFile from './components/DeleteFile';
 
 import { getToken, removeToken, getRole } from './extensions/auth';
 
@@ -45,6 +46,7 @@ function App() {
                     <Route path="/login" element={<LoginForm />} />
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/deleterequest" element={<DeleteFile />} />
                     <Route path="*" element={<Error />} />
                 </Routes>
                 <Footer />
