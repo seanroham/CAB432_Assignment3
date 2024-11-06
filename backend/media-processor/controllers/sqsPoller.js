@@ -80,21 +80,6 @@ const pollMessages = async () => {
 
                 try {
                     await processVideoData(videoId, decodedKey, decodedfilename); // Process the video
-                    // console.log(`Transcoding completed for video: ${videoId}`);
-                    //
-                    // // Update the status in DynamoDB to 'completed'
-                    // await docClient.send(new UpdateCommand({
-                    //     TableName: TABLE_NAME,
-                    //     Key: { "qut-username": QUT_USERNAME, name: fileName },
-                    //     UpdateExpression: "SET #status = :completed",
-                    //     ExpressionAttributeNames: {
-                    //         "#status": "status"
-                    //     },
-                    //     ExpressionAttributeValues: {
-                    //         ":completed": "completed"
-                    //     }
-                    // }));
-
                 } catch (error) {
                     console.error('Error processing video:', error);
                 }

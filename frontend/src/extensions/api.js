@@ -1,9 +1,13 @@
 import axios from 'axios';
 
 const AUTH_URL = 'http://localhost:3003';
-const VIDEO_UPLOAD_URL = 'http://localhost:3000';
+const VIDEO_UPLOAD_URL = 'http://localhost:3001';
 const VIDEO_PROCESSING_URL = 'http://localhost:3002';
-const VIDEO_METADATA_URL = 'http://localhost:3001';
+const VIDEO_METADATA_URL = 'http://localhost:3000';
+// const AUTH_URL = 'https://api.group62.cab432.com';
+// const VIDEO_UPLOAD_URL = 'https://api.group62.cab432.com';
+// const VIDEO_PROCESSING_URL = 'https://api.group62.cab432.com';
+// const VIDEO_METADATA_URL = 'https://api.group62.cab432.com';
 
 // Login API
 export const login = async (credentials) => {
